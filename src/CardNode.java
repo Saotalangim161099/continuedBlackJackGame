@@ -12,7 +12,7 @@ public class CardNode {
     }
 
     // Return the card of the deck
-    public String getCard() {
+    public String printCard() {
         switch (suit) {
             case "H":
                 switch (value) {
@@ -83,9 +83,12 @@ public class CardNode {
     }
 
     public void setLink(CardNode newNode) {
-        this.link = link;
+        this.link = newNode;
     }
 
+
+    // Calculate the value of the card
+    // The value 11, 12 and 13 are counted as 10 only
     public int getCardValue() {
         if (value.equals("11") || value.equals("12") || value.equals("13")) {
             return 10;
@@ -98,4 +101,15 @@ public class CardNode {
     public boolean isSmallerCardValue(CardNode comparedCard) {
         return this.getCardValue() < comparedCard.getCardValue();
     }
+
+    // Compare card value of the player and the opponent
+    public int compareCardValue(CardNode opp) {
+        return this.getCardValue() - opp.getCardValue();
+    }
+
+    /*public static void main(String[] args) {
+        CardNode cardNode = new CardNode("13", "H", null);
+        //cardNode
+        System.out.println(cardNode.compareCardValue(new CardNode("1", "C", null)));
+    }*/
 }

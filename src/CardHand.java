@@ -15,29 +15,30 @@ public class CardHand implements Comparable {
     }
 
     // Check the status of the player, whether the player is busted, black jack or nothing special so return the total point of the player's card hand
-    private int getStatus() {
+    public int getStatus() {
         if (isBusted()) {
             return BUSTED_VALUE;
         } else if (isBlackJack()) {
             return BLACKJACK_VALUE;
         } else {
-            return this.calculateTotalPointOfCardHand();
+            return this.calculateTotalPoint();
         }
     }
 
 
     // Check if the player is busted
-    private boolean isBusted() {
-        return this.calculateTotalPointOfCardHand() > 21;
+    public boolean isBusted() {
+        return this.calculateTotalPoint() > 21;
     }
 
     // Check if the player have black jack
-    private boolean isBlackJack() {
-        return (cardHand.size() == 2 && this.calculateTotalPointOfCardHand() == 21);
+    public boolean isBlackJack() {
+        return (cardHand.size() == 2 && this.calculateTotalPoint() == 21);
     }
 
+
     // Calculate the total point of the player's card hand
-    private int calculateTotalPointOfCardHand() {
+    public int calculateTotalPoint() {
 
         // Separate the sum of the card hand except the aces and the sum of the aces as well as the number of aces in the card hand
         int totalPoint = 0;
@@ -65,21 +66,22 @@ public class CardHand implements Comparable {
         for (int countAce = 0; countAce < numOfAces - 1; countAce++) {
             acesSum += 1;
         }
-        totalPoint = acesSum + nonAcesSum;
 
         // If the player is busted, then every Ace are counted as 1 only
         if (acesSum + nonAcesSum > 21) {
-            totalPoint -= 10;
+            acesSum = numOfAces;
         }
+
+        totalPoint = acesSum + nonAcesSum;
 
         return totalPoint;
     }
 
     // Present card hand of the player
     public void presentCardHand() {
+        System.out.println("Card hand of the player: ");
         for (int cardIndex = 0; cardIndex < cardHand.size(); cardIndex++) {
-            System.out.println(cardHand.get(cardIndex).getCard());
-            System.out.println();
+            System.out.println(cardHand.get(cardIndex).printCard());
         }
     }
 
@@ -103,4 +105,19 @@ public class CardHand implements Comparable {
             return -1;
         }
     }
+
+    /*public static void main(String[] args) {
+        CardHand cardHand1 = new CardHand();
+        cardHand1.addCardToHand(new CardNode("1", "H", null));
+        cardHand1.addCardToHand(new CardNode("10", "C", null));
+        cardHand1.addCardToHand(new CardNode("10", "S", null));
+
+        CardHand cardHand2 = new CardHand();
+        cardHand2.addCardToHand(new CardNode("1", "H", null));
+        cardHand2.addCardToHand(new CardNode("10", "C", null));
+        cardHand2.addCardToHand(new CardNode("9", "S", null));
+
+        System.out.println(cardHand1.compareTo(cardHand2));
+
+    }*/
 }

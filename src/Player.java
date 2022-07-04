@@ -11,7 +11,7 @@ public class Player {
     // constants for player status
     public static final int STATUS_WIN = 1;
     public static final int STATUS_TIE = 0;
-    public static final int STATUS_LOSE = 11;
+    public static final int STATUS_LOSE = -1;
     public static final int STATUS_UNDETERMINED = 13;
 
     public Player(String name, String phoneNumber) {

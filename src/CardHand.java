@@ -79,7 +79,7 @@ public class CardHand implements Comparable {
 
     // Present card hand of the player
     public void presentCardHand() {
-        System.out.println("Card hand of the player: ");
+        // System.out.println("Card hand of the player: ");
         for (int cardIndex = 0; cardIndex < cardHand.size(); cardIndex++) {
             System.out.println(cardHand.get(cardIndex).printCard());
         }
